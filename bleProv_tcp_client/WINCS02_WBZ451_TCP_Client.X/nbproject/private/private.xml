@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/system/console/sys_console.h</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/app.c</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/system/net/sys_wincs_net_service.h</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/app.h</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/driver/wifi/wincs02/nc_driver/winc_socket.c</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/system/console/src/sys_console.c</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/driver/wifi/wincs02/include/nc_driver/winc_socket.h</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/third_party/rtos/FreeRTOS/Source/queue.c</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/system/net/src/sys_wincs_net_service.c</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/config/default/configuration.h</file>
+            <file>file:/D:/jobs/wbz_wincs02/bleProv_tcp_client/src/third_party/rtos/FreeRTOS/Source/FreeRTOS_tasks.c</file>
+        </group>
+    </open-files>
+</project-private>
