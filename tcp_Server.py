@@ -7,11 +7,11 @@ import string
 HOST = '0.0.0.0'  # Listen on all interfaces
 PORT = 8080        # TCP Port
 
-def generate_large_data():
-    """Generate a data packet larger than 500 bytes"""
+def generate_large_data(data_length=25):
+    """Generate a data packet with a timestamp and configurable random data length."""
     timestamp = f"Data packet at {time.strftime('%Y-%m-%d %H:%M:%S')}\n"
-    padding = ''.join(random.choices(string.ascii_letters + string.digits, k=29))  # Generate 1000 bytes of random data
-    return (timestamp + padding)[:1024]  # Ensure the total length is at least 1024 bytes
+    padding = ''.join(random.choices(string.ascii_letters + string.digits, k=data_length))
+    return timestamp + padding
 
 
 def handle_receive(conn, addr):
@@ -23,7 +23,7 @@ def handle_receive(conn, addr):
             if not client_data:
                 print(f"[!] Client {addr} disconnected")
                 break
-            print(f"[Client {addr}] Received: {client_data}")
+            print(f"[Client {addr}] Received: {client_data}\r\n")
     except (BrokenPipeError, ConnectionResetError):
         print(f"[!] Connection lost with {addr}")
     finally:

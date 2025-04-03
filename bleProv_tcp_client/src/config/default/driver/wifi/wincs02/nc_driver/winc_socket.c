@@ -271,7 +271,6 @@ static void slabInit(size_t slabSize, int8_t numSlabs)
         pSlabAllocCtx = NULL;
         return;
     }
-//    size_t allocSize = sizeof(WINC_SOCK_SLAB_CTX) + (size_t)numSlabs + (slabSize * (size_t)numSlabs);
 
     pSlabAllocCtx = initData.pfMemAlloc(sizeof(WINC_SOCK_SLAB_CTX) + (size_t)numSlabs + (slabSize * (size_t)numSlabs));
 
@@ -2692,7 +2691,7 @@ static void dnsProcessAEC(uintptr_t context, WINC_DEVICE_HANDLE devHandle, const
 
         default:
         {
-//            WINC_VERBOSE_PRINT("DNS AECCB ID %04x not handled\r\n", pElems->rspId);
+            WINC_VERBOSE_PRINT("DNS AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

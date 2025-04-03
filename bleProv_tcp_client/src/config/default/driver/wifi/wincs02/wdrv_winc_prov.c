@@ -268,7 +268,7 @@ void WDRV_WINC_ProvProcessAEC
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("PROV AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("PROV AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

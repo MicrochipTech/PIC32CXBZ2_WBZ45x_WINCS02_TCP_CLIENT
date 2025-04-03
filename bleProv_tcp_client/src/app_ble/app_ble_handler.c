@@ -167,13 +167,13 @@ void APP_wbProv_GattSEvtWriteHandler(GATT_EvtWrite_T *p_event)
                     cred.sec_type = SYS_WINCS_WIFI_SECURITY_WPA2_MIXED;
                 else
                     cred.sec_type = 0xFF;
-                if ( ((cred.sec_type != SYS_WINCS_WIFI_SECURITY_OPEN) && (p_event->writeDataLength < (WIFI_PROVISION_MAX_SSID_LENGTH+WIFI_PROV_CRED_SSID_POS))) /*||
-                    (cred.sec_type ==  WDRV_WINC_AUTH_TYPE_WEP) || (cred.sec_type ==  WDRV_WINC_AUTH_TYPE_802_1X)*/)   
-                {
-                    appMsg.msgId =  APP_MSG_BLE_PROV_FAILED;
-                    OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
-                    return;
-                }
+//                if ( ((cred.sec_type != SYS_WINCS_WIFI_SECURITY_OPEN) && (p_event->writeDataLength < (WIFI_PROVISION_MAX_SSID_LENGTH+WIFI_PROV_CRED_SSID_POS))) /*||
+//                    (cred.sec_type ==  WDRV_WINC_AUTH_TYPE_WEP) || (cred.sec_type ==  WDRV_WINC_AUTH_TYPE_802_1X)*/)   
+//                {
+//                    appMsg.msgId =  APP_MSG_BLE_PROV_FAILED;
+//                    OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
+//                    return;
+//                }
                 cred.ssid_length = p_event->writeValue[ p_event->valueOffset + WIFI_PROV_CRED_SSIDLEN_POS] > WIFI_PROVISION_MAX_SSID_LENGTH ? 
                     WIFI_PROVISION_MAX_SSID_LENGTH : p_event->writeValue[ p_event->valueOffset + WIFI_PROV_CRED_SSIDLEN_POS];
                 memcpy(cred.ssid, &p_event->writeValue[p_event->valueOffset + WIFI_PROV_CRED_SSID_POS], cred.ssid_length);

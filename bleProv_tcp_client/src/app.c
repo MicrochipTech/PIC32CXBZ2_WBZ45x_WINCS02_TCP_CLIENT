@@ -129,8 +129,35 @@ SYS_WINCS_NET_SOCKET_t g_tcpClientSocket = {
 // *****************************************************************************
 
 
-/* TODO:  Add any necessary local functions.
-*/
+/*******************************************************************************
+  Function:
+    void APP_Initialize ( void )
+
+  Remarks:
+    See prototype in app.h.
+ */
+
+
+void APP_Initialize ( void )
+{
+    /* Place the App state machine in its initial state. */
+    appData.state = APP_STATE_INIT;
+
+
+    appData.appQueue = xQueueCreate( 16, sizeof(APP_Msg_T) );
+    /* TODO: Initialize your application's state machine and other
+     * parameters.
+     */
+    
+    memset(&cred, 0, sizeof(credentials));
+    
+    cred.wifi_status = WIFI_DISCONNECTED;
+    cred.sec_type = SYS_WINCS_WIFI_STA_SECURITY;
+    cred.ssid_length = (uint8_t)strlen(SYS_WINCS_WIFI_STA_SSID);
+    strcpy((char *)cred.ssid, SYS_WINCS_WIFI_STA_SSID);
+    cred.passphrase_length = (uint8_t)strlen(SYS_WINCS_WIFI_STA_PWD);
+    strcpy((char *)cred.passphrase, SYS_WINCS_WIFI_STA_PWD);
+}
 
 
 // *****************************************************************************
@@ -171,6 +198,7 @@ void SYS_WINCS_NET_SockCallbackHandler
     SYS_WINCS_NET_HANDLE_t netHandle    // Additional data or message associated with the event
 ) 
 {
+    APP_Msg_T appMsg;
     if(socket == g_tcpClientSocket.sockID)
     {
         switch(event)
@@ -206,7 +234,7 @@ void SYS_WINCS_NET_SockCallbackHandler
             /* Net socket read event code*/
             case SYS_WINCS_NET_SOCK_EVENT_READ:
             {         
-                uint8_t rx_data[64];
+                uint8_t rx_data[100];
                 int16_t rcvd_len = 64;
                 memset(rx_data,0,64);
 
@@ -215,14 +243,11 @@ void SYS_WINCS_NET_SockCallbackHandler
                 {
                     rcvd_len = strlen((char *)rx_data);
                     rx_data[rcvd_len] = '\n';
-//                    SYS_CONSOLE_PRINT(TERM_YELLOW"Received ->%d bytes\r\n"TERM_RESET, rcvd_len);
-                    SYS_CONSOLE_PRINT(TERM_YELLOW"Received ->%s\r\n"TERM_RESET, rx_data);
-
-                    // Write the received data back to the TCP socket
-                    if (SYS_WINCS_FAIL == SYS_WINCS_NET_TcpSockWrite(socket, rcvd_len, rx_data))
-                    {
-                        appData.state = APP_STATE_WINCS_ERROR;
-                    }
+                    
+                    appMsg.msgId = APP_MSG_SOCKET_SEND;
+                    strncpy((char*)appMsg.msgData, (char*)rx_data, sizeof(appMsg.msgData) - 1);
+                    appMsg.msgData[sizeof(appMsg.msgData) - 1] = '\0'; // Ensure null termination
+                    OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
                 }    
                 break;
             }
@@ -249,36 +274,7 @@ void SYS_WINCS_NET_SockCallbackHandler
     */
 }
 
-/*******************************************************************************
-  Function:
-    void APP_Initialize ( void )
-
-  Remarks:
-    See prototype in app.h.
- */
-
-
-void APP_Initialize ( void )
-{
-    /* Place the App state machine in its initial state. */
-    appData.state = APP_STATE_INIT;
-
-
-    appData.appQueue = xQueueCreate( 16, sizeof(APP_Msg_T) );
-    /* TODO: Initialize your application's state machine and other
-     * parameters.
-     */
-    
-    memset(&cred, 0, sizeof(credentials));
-    
-    cred.wifi_status = WIFI_DISCONNECTED;
-    cred.sec_type = SYS_WINCS_WIFI_STA_SECURITY;
-    cred.ssid_length = (uint8_t)strlen(SYS_WINCS_WIFI_STA_SSID);
-    strcpy((char *)cred.ssid, SYS_WINCS_WIFI_STA_SSID);
-    cred.passphrase_length = (uint8_t)strlen(SYS_WINCS_WIFI_STA_PWD);
-    strcpy((char *)cred.passphrase, SYS_WINCS_WIFI_STA_PWD);
-}
-        
+       
 void SYS_WINCS_WIFI_CallbackHandler
 (
     SYS_WINCS_WIFI_EVENT_t event,         // The type of Wi-Fi event
@@ -338,7 +334,8 @@ void SYS_WINCS_WIFI_CallbackHandler
         case SYS_WINCS_WIFI_DHCP_IPV4_COMPLETE:
         {
             SYS_CONSOLE_PRINT("[APP] : DHCP IPv4 : %s\r\n", (char *)wifiHandle);
-//            appData.state = APP_STATE_WINCS_CREATE_SOCKET;
+            appMsg.msgId = APP_MSG_SOCKET_CREATE;
+            OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
             break;
         }
         
@@ -350,8 +347,6 @@ void SYS_WINCS_WIFI_CallbackHandler
         
         case SYS_WINCS_WIFI_DHCP_IPV6_GLOBAL_COMPLETE:
         {
-            appMsg.msgId = APP_MSG_CREATE_SOCKET;
-            OSAL_QUEUE_Send(&appData.appQueue, &appMsg, 0);
             SYS_CONSOLE_PRINT("[APP] : DHCP IPv6 Global: %s\r\n", (char *)wifiHandle);
             break;
         }
@@ -597,7 +592,7 @@ void APP_Tasks ( void )
                     }
                     APP_ConnService_SendNotification(conn_hdl, NOTIFY_STATE_PROVISIONFAILED);
                 }
-                else if(p_appMsg->msgId==APP_MSG_CREATE_SOCKET)
+                else if(p_appMsg->msgId==APP_MSG_SOCKET_CREATE)
                 {
                     // Set the callback handler for NET socket events
                     SYS_WINCS_NET_SockSrvCtrl(SYS_WINCS_NET_SOCK_SET_CALLBACK, SYS_WINCS_NET_SockCallbackHandler);
@@ -606,6 +601,15 @@ void APP_Tasks ( void )
                     {
                         appData.state = APP_STATE_WINCS_ERROR;
                         break;
+                    }
+                }
+                else if (p_appMsg->msgId==APP_MSG_SOCKET_SEND)
+                {
+                    SYS_CONSOLE_PRINT(TERM_YELLOW"Received ->%s\r\n"TERM_RESET, p_appMsg->msgData);
+                    //Write the received data back to the TCP socket
+                    if (SYS_WINCS_FAIL == SYS_WINCS_NET_TcpSockWrite(g_tcpClientSocket.sockID, strlen((char*)p_appMsg->msgData), p_appMsg->msgData))
+                    {
+                        appData.state = APP_STATE_WINCS_ERROR;
                     }
                 }
             }

@@ -256,7 +256,7 @@ void WDRV_WINC_DNSProcessAEC(uintptr_t context, WINC_DEVICE_HANDLE devHandle, co
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("DNS AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("DNS AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

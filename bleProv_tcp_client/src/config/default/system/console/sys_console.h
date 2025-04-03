@@ -128,7 +128,7 @@
 //    #define SYS_CONSOLE_PRINT(fmt, ...)                 SYS_CONSOLE_Print(SYS_CONSOLE_DEFAULT_INSTANCE, fmt, ##__VA_ARGS__)
 #define SYS_CONSOLE_PRINT(fmt, ...)                     do { \
                                                             SYS_CONSOLE_Print(SYS_CONSOLE_DEFAULT_INSTANCE, fmt, ##__VA_ARGS__); \
-                                                            vTaskDelay(pdMS_TO_TICKS(100)); \
+                                                            vTaskDelay(pdMS_TO_TICKS(50)); \
                                                         } while (0)
 #endif
 

@@ -122,9 +122,9 @@ typedef void (*WDRV_WINC_DEBUG_PRINT_CALLBACK)(const char *format, ...);
   Remarks:
     None.
 */
-#define WDRV_WINC_DEBUG_LEVEL        WDRV_WINC_DEBUG_TYPE_VERBOSE
+
 #ifndef WDRV_WINC_DEBUG_LEVEL
-#define WDRV_WINC_DEBUG_LEVEL        WDRV_WINC_DEBUG_TYPE_TRACE
+#define WDRV_WINC_DEBUG_LEVEL   WDRV_WINC_DEBUG_TYPE_TRACE
 #endif
 
 // *****************************************************************************

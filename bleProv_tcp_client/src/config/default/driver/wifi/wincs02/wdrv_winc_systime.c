@@ -218,7 +218,7 @@ void WDRV_WINC_TIMEProcessAEC
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("TIME AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("TIME AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

@@ -291,7 +291,7 @@ void WDRV_WINC_AssocProcessAEC
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("ASSOC AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("ASSOC AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

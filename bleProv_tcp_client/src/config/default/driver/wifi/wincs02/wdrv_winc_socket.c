@@ -274,7 +274,7 @@ void WDRV_WINC_ICMPProcessAEC
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("PING AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("PING AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }

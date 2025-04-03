@@ -32382,7 +32382,9 @@
          <key class="com.microchip.mcc.core.tokenManager.CustomKey" moduleName="sys_debug" name="SYS_DEBUG_LEVEL"/>
          <value>&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&lt;sys_debug&gt;
   &lt;sys_debug dnOrder=&quot;0&quot; id=&quot;SYS_DEBUG_LEVEL&quot;&gt;
-    &lt;Values dnOrder=&quot;0&quot;/&gt;
+    &lt;Values dnOrder=&quot;0&quot;&gt;
+      &lt;User dnOrder=&quot;0&quot; value=&quot;SYS_ERROR_INFO&quot;/&gt;
+    &lt;/Values&gt;
   &lt;/sys_debug&gt;
 &lt;/sys_debug&gt;
 </value>
@@ -33320,7 +33322,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\configuration.h</file>
-         <hash>381bbdd35ebee5ec3bb4c24a6495cce0bcf139ad9ecaaffcc9467beda494bd26</hash>
+         <hash>d9fde7722e8c8ad4f7c7dd3c21967dbd6b4f313d25fc2cba19f0336b4145abbf</hash>
       </entry>
       <entry>
          <file>..\src\config\default\crypto\crypto.h</file>
@@ -33332,7 +33334,7 @@
       </entry>
       <entry>
          <file>..\src\config\default\definitions.h</file>
-         <hash>1bb1d4339e7a1e485e8e266c2d878e1a6e4e49e05b639a64bbc3c0dc1fe3c4fa</hash>
+         <hash>a549cf6242932340d82d00d97cd2d0985bb311b436b8f2ea66d7af3c7527b08c</hash>
       </entry>
       <entry>
          <file>..\src\config\default\device.h</file>

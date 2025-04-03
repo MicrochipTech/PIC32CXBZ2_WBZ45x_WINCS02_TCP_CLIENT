@@ -448,7 +448,7 @@ void WDRV_WINC_WSCNProcessAEC(uintptr_t context, WINC_DEVICE_HANDLE devHandle, c
 
         default:
         {
-//            WDRV_DBG_VERBOSE_PRINT("WSCN AECCB ID %04x not handled\r\n", pElems->rspId);
+            WDRV_DBG_VERBOSE_PRINT("WSCN AECCB ID %04x not handled\r\n", pElems->rspId);
             break;
         }
     }
