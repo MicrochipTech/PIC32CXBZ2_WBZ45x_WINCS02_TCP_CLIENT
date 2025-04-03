@@ -38,7 +38,7 @@ def handle_send(conn, addr):
             server_data = generate_large_data()
             conn.sendall(server_data.encode())
             print("[Server]",server_data)
-            time.sleep(0.25)
+            time.sleep(1)
     except (BrokenPipeError, ConnectionResetError):
         print(f"[!] Connection lost with {addr}")
     finally:
