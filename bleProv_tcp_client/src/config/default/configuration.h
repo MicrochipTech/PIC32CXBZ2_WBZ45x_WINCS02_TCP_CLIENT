@@ -150,8 +150,7 @@ extern "C" {
 /* WINCS02  WIFI System Service Configuration Options */
 
 #define SYS_WINCS_WIFI_DEVMODE        		SYS_WINCS_WIFI_MODE_STA
-#define SYS_WINCS_WIFI_STA_SSID				"__ANKU__"
-//#define SYS_WINCS_WIFI_STA_SSID				"Microchip_Wireless"
+#define SYS_WINCS_WIFI_STA_SSID				"Microchip_Wireless"
 #define SYS_WINCS_WIFI_STA_PWD        		"Microchip1234"
 #define SYS_WINCS_WIFI_STA_SECURITY			SYS_WINCS_WIFI_SECURITY_WPA2 
 #define SYS_WINCS_WIFI_STA_AUTOCONNECT   	false
