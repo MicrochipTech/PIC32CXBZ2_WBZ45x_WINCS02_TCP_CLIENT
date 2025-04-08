@@ -85,9 +85,78 @@ This application demonstrates a traditional open TCP client in the Host Companio
 
 ![](Docs/Project_graph.png)
 
-- [Generate](https://onlinedocs.microchip.com/pr/GUID-A5330D3A-9F51-4A26-B71D-8503A493DF9C-en-US-1/index.html?GUID-9C28F407-4879-4174-9963-2CF34161398E) the code.
+- From device resources go to Wireless->Drivers->BLE->Services and select Customized Service. Accept all dependencies. The configuration is depicted as follows.
 
-- Clean and build the project. To run the project, select "Make and program device" button.
+![](Docs/CustomService1.png)
+
+![](Docs/CustomService2.png)
+
+- From Project graph, select BLE Stack. The configuration is depicted as follows.
+
+![](Docs/BLE1.png)
+
+![](Docs/BLE2.png)
+
+- From device resources go to Wireless->Drivers and select WINCS02. Right click on SPI and select SERCOM1. Right click on SYS_DEBUG and select DEBUG. Accept all dependencies. The configuration is depicted as follows.
+
+![](Docs/Sercom1.png)
+
+- Right click on TMR in TIME component and add TC0.
+
+- Right click on SYS_CONSOLE in DEBUG component and add SERCOM 0.
+
+![](Docs/Sercom0.png)
+
+- From device resources go to Wireless->System Services and select RNWF WINCS Net Service. Accept all dependencies. The configuration is depicted as follows.
+
+![](Docs/NetService.png)
+
+- From device resources go to Wireless->System Services and select RNWF WINCS Wi-Fi Service. Accept all dependencies. The configuration is depicted as follows.
+
+![](Docs/WifiService.png)
+
+- From device resources go to Harmony->Peripherals and select EIC. The configuration is depicted as follows.
+
+![](Docs/EIC.png)
+
+- From Plugins, select Pin configuration. The configuration is depicted as follows.
+
+![](Docs/PIN_config.png)
+
+**Step 4** -   [Generate](https://onlinedocs.microchip.com/pr/GUID-A5330D3A-9F51-4A26-B71D-8503A493DF9C-en-US-1/index.html?GUID-9C28F407-4879-4174-9963-2CF34161398E) the code.
+
+**Step 5** -  Copy the mentioned files from this repository by navigating to the location mentioned below and replace the generated files.
+ 
+| Note | This application repository should be cloned/downloaded to perform the following steps. |
+| :- | :- |
+| Path | The application folder can be found in the following [link](https://github.com/MicrochipTech/PIC32CXBZ2_WBZ45x_BLE_UART_MODBUS) |
+
+- Copy the following files from the cloned repo(...\firmware\src).
+	- "app.c" and "app.h",
+	- "app_ble.c" and "app_ble.h",
+	- "app_ble_handler.c" and "app_ble_handler.h"
+	- "ble_conn_serv_svc.c" (\src\config\default\ble\service_ble\ble_cms\ble_conn_serv_svc.c)
+	- wdrv_winc_sta.c(src\config\default\driver\wifi\wincs02\wdrv_winc_sta.c)
+	- plib_gpio.h(src\config\default\peripheral\gpio\plib_gpio.h)
+	- sys_console.h(\src\config\default\system\console\sys_console.h)
+	- configuration.h(src\config\default\configuration.h)
+	- freertos_hooks.c(\src\config\default\freertos_hooks.c)
+	- "app_timer" folder
+- Replace the above mentioned files in your project folder location(...\firmware\src).
+
+**Step 6** - In "app_user_edits.c", make sure the below code line is commented 
+
+- "#error User action required - manually edit files as described here".
+
+**Step 6** - In "configurations.h", please change the IP address under the below definition to the IP address running the TCP Server script. (src\config\default\configuration.h)
+
+'''
+SYS_WINCS_NET_SOCK_SERVER_ADDR0
+'''
+
+**Step 7** - From projects, go to "app_adv.h" file and add this code in line 104.
+
+**Step 8** - Clean and build the project. To run the project, select "Make and program device" button.
 
 ## 6. Board Programming<a name="step6">
 
