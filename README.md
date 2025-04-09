@@ -33,6 +33,8 @@ Checkout the <a href="https://microchipsupport.force.com/s/" target="_blank">Tec
 
 This application demonstrates a traditional open TCP client in the Host Companion mode using the WBZ451 Curiosity board. In this application the RNWF02 will host a TCP Client in Wi-Fi STA mode. The user is required to configure the Wi-Fi credentials for Home-AP and provide the necessary details for the remote TCP server configuration. By default the application will connect to Home-AP and begin a TCP client socket connection with a TCP server. After establishing a successful TCP server-client connection, the data exchange will take place.
 
+![](Docs/setup.png) 
+
 ## 2. Bill of materials<a name="step2">
 
 | TOOLS | QUANTITY |
@@ -186,6 +188,6 @@ Follow the steps provided in the link to [Build and program the application](htt
 
 - Once the TCP connection is established the messages sent from the TCP Server will be printed on TCP Client console.
 
-- ![](Docs/demo.png) 
+![](Docs/demo.png) 
 
-- If the application code is already configured to the Wi-Fi seetings then the application will get connected and will start receiving messages from the TCP server.
+- If the application code is already configured to the Wi-Fi settings then the application will get connected and will start receiving messages from the TCP server.
