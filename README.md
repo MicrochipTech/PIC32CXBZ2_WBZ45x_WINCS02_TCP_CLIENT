@@ -121,7 +121,7 @@ This application demonstrates a traditional open TCP client in the Host Companio
 
 - From Plugins, select Pin configuration. The configuration is depicted as follows.
 
-![](Docs/PIN_config.png)
+![](Docs/Pin_config.png)
 
 **Step 4** -   [Generate](https://onlinedocs.microchip.com/pr/GUID-A5330D3A-9F51-4A26-B71D-8503A493DF9C-en-US-1/index.html?GUID-9C28F407-4879-4174-9963-2CF34161398E) the code.
 
@@ -171,3 +171,21 @@ SYS_WINCS_NET_SOCK_SERVER_ADDR0
 Follow the steps provided in the link to [Build and program the application](https://github.com/Microchip-MPLAB-Harmony/wireless_apps_pic32cxbz2_wbz45/tree/master/apps/ble/advanced_applications/ble_sensor#build-and-program-the-application-guid-3d55fb8a-5995-439d-bcd6-deae7e8e78ad-section).
 
 ## 7. Run the demo<a name="step7">
+
+- On startup, go to MBD app->BLE provisioning->WINC3400. 
+
+- Scan and connect to "WINCS02_Keystream" device. 
+
+- Pair the device by entering the key displayed in Tera-Term. 
+
+- Enter the details of the Wi-Fi SSID and password and select provision. 
+
+- The device will be connected to the configured Wi-Fi network. 
+
+- For TCP server, please run the script given. Make sure the device running the script is also connected to the same Wi-Fi network and this device IP address is updated in the application as mentioned earlier. 
+
+- Once the TCP connection is established the messages sent from the TCP Server will be printed on TCP Client console.
+
+- ![](Docs/demo.png) 
+
+- If the application code is already configured to the Wi-Fi seetings then the application will get connected and will start receiving messages from the TCP server.
