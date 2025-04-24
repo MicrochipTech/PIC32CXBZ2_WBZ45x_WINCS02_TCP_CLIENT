@@ -5,8 +5,8 @@
 
 > "IoT Made Easy!" 
 
-Devices: **| WBZ451 | RNWF02 |**<br>
-Features: **| Wi-Fi |**
+Devices: **| WBZ451 | WINCS02 |**<br>
+Features: **| Wi-Fi | BLE |**
 
 
 ## ⚠ Disclaimer
@@ -40,9 +40,8 @@ The user can use the "Microchip Bluetooth Data" mobile application to send the A
 
 | TOOLS | QUANTITY |
 | :- | :- |
-| [PIC32 WFI32E Curiosity Board](https://www.microchip.com/en-us/development-tool/ev12f11a) | 1 |
-| [EVB-LAN8670-RMII](https://www.microchip.com/en-us/development-tool/EV06P90A) | 2 |
-| [SAM E54 CURIOSITY ULTRA DEVELOPMENT BOARD](https://microchip.com/en-us/development-tool/dm320210) | 1 |
+| [PIC32CX-BZ2 and WBZ451 Curiosity Development Board](https://www.microchip.com/en-us/development-tool/ev96b94a) | 1 |
+| [WINCS02 Add-on Board](https://www.microchip.com/en-us/development-tool/ev68g27a) | 1 |
 
 ## 3. Software Setup<a name="step3">
 
@@ -71,7 +70,7 @@ The user can use the "Microchip Bluetooth Data" mobile application to send the A
 
 ## 4. Hardware Setup<a name="step4">
 
-- In the WBZ451 Curiositiy board please remove the resistor R122 and R124. Mount the RNWF02 Add on board on WBZ451 Curiosity board. 
+- In the WBZ451 Curiositiy board please remove the resistor R122 and R124. Mount the WINCS02 Add on board on WBZ451 Curiosity board. 
 
 ## 5. Harmony MCC Configuration<a name="step5">
 
