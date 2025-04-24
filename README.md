@@ -1,4 +1,4 @@
-# PIC32CXBZ2 WBZ45x WINCS02 TCP CLIENT
+# PIC32CXBZ2 WBZ45x WINCS02 WiFi Provisioning via BLE
 
 <img src="Docs/IoT-Made-Easy-Logo.png" width=100>
 
@@ -31,8 +31,11 @@ Checkout the <a href="https://microchipsupport.force.com/s/" target="_blank">Tec
 
 ## 1. Introduction<a name="step1">
 
-This application demonstrates a traditional open TCP client in the Host Companion mode using the WBZ451 Curiosity board. In this application the WINCS02 will host a TCP Client in Wi-Fi STA mode. The user is required to configure the Wi-Fi credentials for Home-AP and provide the necessary details for the remote TCP server configuration. By default the application will connect to Home-AP and begin a TCP client socket connection with a TCP server. After establishing a successful TCP server-client connection, the data exchange will take place.
-The user can use the "Microchip Bluetooth Data" mobile application to send the AP credentials to the WINCS02 via BLE Custom service created in WBZ451 device.
+This application demonstrates how to provision a device to a WiFi network via BLE and open a TCP client in Host Companion mode using the WBZ451 Curiosity board. In this application, the WINCS02 module will host a TCP client in Wi-Fi STA mode. Users can either pre-configure the Wi-Fi credentials for their Home-AP or provision them through BLE using the Microchip Bluetooth Data (MBD) app.
+
+To ensure proper remote TCP server configuration, provide the necessary details. By default, the application will connect to the Home-AP and initiate a TCP client socket connection with a TCP server. Once a successful TCP server-client connection is established, data exchange will commence.
+
+Users can utilize the "Microchip Bluetooth Data" mobile application to send the AP credentials to the WINCS02 module via a custom BLE service created on the WBZ451 device.
 
 ![](Docs/setup.png) 
 
